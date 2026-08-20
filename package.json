@@ -1,0 +1,86 @@
+{
+  "name": "kodak-photo-printer",
+  "version": "0.1.0",
+  "description": "TypeScript library and CLI for Prinics-built instant photo printers, sold as Kodak Mini Shot, Kodak Dock, PICKIT SNAPS and SI",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "bin": {
+    "kodak": "./dist/cli/main.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "PROTOCOL.md",
+    "CAPABILITIES.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\"",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "cli": "node --experimental-strip-types src/cli/main.ts",
+    "prepublishOnly": "pnpm run clean && pnpm run build"
+  },
+  "packageManager": "pnpm@10.28.0",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@serialport/bindings-cpp",
+      "esbuild",
+      "sharp",
+      "usb"
+    ]
+  },
+  "dependencies": {
+    "commander": "^12.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "serialport": "^13.0.0",
+    "sharp": "^0.35.3",
+    "typescript": "^5.7.2",
+    "usb": "^3.0.1",
+    "vitest": "^2.1.8"
+  },
+  "peerDependencies": {
+    "@abandonware/noble": "^1.9.2-25",
+    "sharp": "^0.33.5 || ^0.34.0 || ^0.35.0",
+    "usb": "^2.14.0 || ^3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@abandonware/noble": {
+      "optional": true
+    },
+    "sharp": {
+      "optional": true
+    },
+    "usb": {
+      "optional": true
+    }
+  },
+  "keywords": [
+    "kodak",
+    "kodak-mini-shot",
+    "kodak-dock",
+    "prinics",
+    "pickit-snaps",
+    "printer",
+    "instant-photo",
+    "thermal",
+    "dye-sublimation",
+    "bluetooth",
+    "spp",
+    "serialport"
+  ]
+}
